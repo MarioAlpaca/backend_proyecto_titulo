@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+pycache/
+*.py[cod]
+*$py.class
+
+Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+
+# Local environment settings
+.env
+.env
+
+# Ignore the virtual environment folder
+venv/
+env/
+ENV/
+.venv/
+.VENV/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore migrations
+**/migrations/
