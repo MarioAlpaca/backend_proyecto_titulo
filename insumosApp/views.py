@@ -1,6 +1,5 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import viewsets, generics
-from rest_framework.pagination import PageNumberPagination
 from .models import Insumo
 from .serializers import InsumoSerializer
 from rest_framework import status
@@ -10,18 +9,11 @@ from .models import Insumo
 from subjectsApp.models import ClaseInsumo, Clase
 from django.db.models import Q
 
-# Clase de paginación específica para Insumos
-class InsumoPagination(PageNumberPagination):
-    page_size = 10  # Número de objetos por página
-    page_size_query_param = "page_size"  # Permitir ajustar el tamaño desde la URL
-    max_page_size = 100  # Tamaño máximo permitido
-
 # CRUD para Insumo con paginación
 class InsumoView(viewsets.ModelViewSet):
     queryset = Insumo.objects.all().order_by('nombre')  # Ordenar por el campo 'nombre'
     serializer_class = InsumoSerializer
     permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden acceder
-    pagination_class = InsumoPagination  # Se aplica solo a esta vista
 
     def perform_update(self, serializer):
         """Actualizar la cantidad de un insumo si está asignado a una clase iniciada."""
